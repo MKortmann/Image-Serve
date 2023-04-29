@@ -1,11 +1,8 @@
-import { Request, Response } from 'express';
+import express, { Request, Response } from 'express';
 
-const express = require('express');
 const app = express();
 
-export const add5 = (value: number) => {
-  return value + 5;
-};
+const add5 = (value: number) => value + 5;
 
 app.get('/', (req: Request, res: Response) => {
   res.send('Hello, World!');
@@ -14,3 +11,5 @@ app.get('/', (req: Request, res: Response) => {
 app.listen(3000, () => {
   console.log('Server started on port 3000');
 });
+
+export default add5;

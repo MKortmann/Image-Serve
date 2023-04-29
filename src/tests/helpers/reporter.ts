@@ -2,6 +2,7 @@ import { DisplayProcessor, SpecReporter, StacktraceOption } from 'jasmine-spec-r
 import SuiteInfo = jasmine.JasmineStartedInfo;
 
 class CustomProcessor extends DisplayProcessor {
+  // eslint-disable-next-line class-methods-use-this
   public displayJasmineStarted(info: SuiteInfo, log: string): string {
     return `TypeScript ${log}`;
   }

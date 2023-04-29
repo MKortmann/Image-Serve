@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { add5 } from '../index';
+import add5 from '../index';
 
 describe('Example test', () => {
   it('should return a 200 status code', () => {
