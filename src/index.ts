@@ -1,9 +1,13 @@
 import express, { Request, Response } from 'express';
+import routes from './routes/index';
 
 const app = express();
 const port = 3000;
 
 const add5 = (value: number) => value + 5;
+
+// Example of import and use the routes module as middleware
+app.use('/', routes);
 
 const myMiddleware = (req: Request, res: Response, next: () => void) => {
   const text = req.params.text;
