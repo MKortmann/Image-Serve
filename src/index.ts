@@ -5,8 +5,15 @@ const port = 3000;
 
 const add5 = (value: number) => value + 5;
 
-app.get('/api', (req: Request, res: Response) => {
-  res.send('Hello, World!');
+const myMiddleware = (req: Request, res: Response, next: () => void) => {
+  const text = req.params.text;
+  console.log(text);
+  res.locals.text = text;
+  next();
+};
+
+app.get('/api/:text', myMiddleware, (req: Request, res: Response) => {
+  res.send(`Hello, World: ${res.locals.text}`);
 });
 
 app.listen(port, () => {
