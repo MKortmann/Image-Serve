@@ -4,12 +4,13 @@
   "description": "API Image Processing",
   "main": "index.js",
   "scripts": {
+    "start": "nodemon src/index.ts",
     "clean": "rm -rf dist",
     "build": "npx tsc",
-    "prettier": "prettier --write '**/*.ts",
+    "prettier": "prettier --write '**/*.ts'",
     "lint": "eslint . --ext .ts",
-    "dev": "concurrently 'npm run start:dev' 'npm run watch:ts'",
-    "start:dev": "nodemon --watch dist dist/index.js",
+    "prod": "concurrently 'npm run start:prod' 'npm run watch:ts'",
+    "start:prod": "nodemon --watch dist dist/index.js",
     "watch:ts": "tsc --watch",
     "test": "npm run build && jasmine --config=./jasmine.json",
     "test:watch": "jasmine --config=./jasmine.json --watch"
@@ -26,7 +27,7 @@
     "url": "https://github.com/MKortmann/Image-Serve"
   },
   "engines": {
-    "node": ">=14.17.0"
+    "node": ">=14.17.0 <= 16.13.1"
   },
   "devDependencies": {
     "@types/express": "^4.17.17",
