@@ -1,20 +1,25 @@
-import express, { Request, Response } from 'express';
+import express, { Request, Response, NextFunction } from 'express';
+import cors from 'cors';
+import dotenv from 'dotenv';
 import routes from './routes/index';
 import logger from './routes/api/logger';
-require('dotenv').config();
+
+dotenv.config();
 
 const app = express();
 const port = process.env.PORT;
 
-const path = require('path');
+// const path = require('path');
+
+app.use(cors());
 
 const add5 = (value: number) => value + 5;
 
 // Example of import and use the routes module as middleware
 app.use('/', routes);
 
-const myMiddleware = (req: Request, res: Response, next: Function): void => {
-  const text = req.params.text;
+const myMiddleware = (req: Request, res: Response, next: NextFunction): void => {
+  const { text } = req.params;
   console.log(text);
   res.locals.text = text;
   next();

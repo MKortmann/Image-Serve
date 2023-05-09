@@ -1,8 +1,7 @@
-import { log } from 'console';
-import express, { Request, Response } from 'express';
+import { Request, NextFunction } from 'express';
 
-const logger = (req: Request, res: Response, next: Function): void => {
-  const url = req.url;
+const logger = (req: Request, next: NextFunction): void => {
+  const { url } = req;
   console.log(`The visit URL: ${url}`);
   next();
 };

@@ -7,7 +7,7 @@ routes.get('/', (req: Request, res: Response): void => {
 });
 
 routes.get('/images/:filename', (req, res) => {
-  const filename = req.params.filename;
+  const { filename } = req.params;
   console.log(filename);
   res.sendFile(filename);
 });
