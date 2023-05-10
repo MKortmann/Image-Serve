@@ -22,16 +22,13 @@ describe('test the getUnmodifyImage middleware', () => {
     server.close(done);
   });
   it('should return a JPEG image file', async () => {
-    const imagePath = path.join(__dirname, '../../assets/images/fjord.jpg');
-    console.log(imagePath);
-    const response = await request(app).get(`${imagePath}`);
+    const response = await request(app).get('/fjord');
     expect(response.status).toEqual(200);
     expect(response.type).toEqual('image/jpeg');
   });
-
-  // it('should return a 404 error if file does not exist', async () => {
-  //   const imagePath = path.join(__dirname, '../../assets/images/fjordX.jpg');
-  //   const response = await request(app).get(imagePath);
-  //   expect(response.status).toEqual(404);
-  // });
+  it('should return a 404 error if file does not exist', async () => {
+    const imagePath = path.join(__dirname, '../../assets/images/fjordX.jpg');
+    const response = await request(app).get(imagePath);
+    expect(response.status).toEqual(404);
+  });
 });
