@@ -1,34 +1,22 @@
-import express, { Request, Response, NextFunction } from 'express';
+import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import path from 'path';
 import routes from './routes/index';
-import logger from './routes/api/logger';
-
-dotenv.config();
 
 const app = express();
 app.use(cors());
-app.use(express.static(path.join(__dirname, '../assets')));
+//this is great solution if we want to use the static middlewre from express that returns for us any file at images.
+// app.use(express.static(path.join(__dirname, '../assets/images')));
 // Example of import and use the routes module as middleware
 app.use('/', routes);
+dotenv.config();
 
 const port = process.env.PORT;
-const add5 = (value: number) => value + 5;
-
-const myMiddleware = (req: Request, res: Response, next: NextFunction): void => {
-  const { text } = req.params;
-  console.log(text);
-  res.locals.text = text;
-  next();
-};
-
-app.get('/api/:text', myMiddleware, logger, (req: Request, res: Response): void => {
-  res.send(`Hello, World: ${res.locals.text}`);
-});
 
 app.listen(port, (): void => {
   console.log(`Server started on port: ${port}`);
 });
 
+const add5 = (value: number) => value + 5;
 export default add5;
