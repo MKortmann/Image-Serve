@@ -7,7 +7,7 @@ import routes from './routes/index';
 const app = express();
 app.use(cors());
 //this is great solution if we want to use the static middlewre from express that returns for us any file at images.
-// app.use(express.static(path.join(__dirname, '../assets/images')));
+app.use(express.static(path.join(__dirname, '../public')));
 // Example of import and use the routes module as middleware
 app.use('/', routes);
 dotenv.config();

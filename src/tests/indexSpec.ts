@@ -1,7 +1,7 @@
 // import { Request, Response } from 'express';
 import add5 from '../index';
 
-describe('Example test', () => {
+describe('Image EndPoint test', () => {
   it('should return a 200 status code', () => {
     // const req: Request = {} as Request;
     // const res: Response = {} as Response;
