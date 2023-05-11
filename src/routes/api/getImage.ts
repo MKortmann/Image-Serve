@@ -11,6 +11,8 @@ interface ImageRequestQuery {
 
 export async function getImage(req: Request, res: Response): Promise<void> {
   const { filename, width, height } = req.query as unknown as ImageRequestQuery;
+
+  console.log(filename);
   const imagePath = path.join(__dirname, '../../../assets/images/', filename + '.jpg');
 
   if (!fs.existsSync(imagePath)) {
@@ -26,7 +28,7 @@ export async function getImage(req: Request, res: Response): Promise<void> {
   const thumbPath = path.join(
     __dirname,
     '../../../assets/thumbs/',
-    filename + width + height + '.jpg'
+    filename + '-w' + width + '-h' + height + '.jpg'
   );
 
   if (fs.existsSync(thumbPath)) {
@@ -39,6 +41,7 @@ export async function getImage(req: Request, res: Response): Promise<void> {
     await sharp(imagePath).resize(parseInt(width), parseInt(height)).toFile(thumbPath);
 
     res.setHeader('Content-Type', 'image/jpeg');
+    res.status(200);
     res.sendFile(thumbPath);
   } catch (err) {
     console.error(err);

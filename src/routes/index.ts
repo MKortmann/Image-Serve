@@ -4,8 +4,7 @@ import { getUnmodifyImage } from './api/getUnmodifyImage';
 
 const routes = express.Router();
 
-routes.get('/:filename', getUnmodifyImage);
-
 routes.get('/images', getImage);
+routes.get('/:filename', getUnmodifyImage);
 
 export default routes;
