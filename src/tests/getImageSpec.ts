@@ -6,9 +6,9 @@ import { Server } from 'http';
 
 const app = express();
 
-app.get('/images', getImage);
+app.get('/:filename', getImage);
 
-describe('test the getImage middleware', () => {
+describe('test the getUnmodifyImage middleware', () => {
   let server: Server;
   const PORT = 5000;
 
@@ -21,32 +21,14 @@ describe('test the getImage middleware', () => {
   afterAll((done) => {
     server.close(done);
   });
-  it('should return a 200 status if it exist', async () => {
-    const response = await request(app).get(
-      '/images?filename=encenadaport&width=200&height=200'
-    );
+  it('should return a JPEG image file', async () => {
+    const response = await request(app).get('/fjord');
     expect(response.status).toEqual(200);
     expect(response.type).toEqual('image/jpeg');
   });
-
   it('should return a 404 error if file does not exist', async () => {
-    const response = await request(app).get(
-      '/images?filename=encenadaportX&width=200&height=200'
-    );
+    const imagePath = path.join(__dirname, '../../assets/images/fjordX.jpg');
+    const response = await request(app).get(imagePath);
     expect(response.status).toEqual(404);
-  });
-
-  it('should return a 400 error if width parameter is missing', async () => {
-    const response = await request(app).get(
-      '/images?filename=encenadaport&width=&height=200'
-    );
-    expect(response.status).toEqual(400);
-  });
-
-  it('should return a 400 error if height parameter is missing', async () => {
-    const response = await request(app).get(
-      '/images?filename=encenadaport&width=&height='
-    );
-    expect(response.status).toEqual(400);
   });
 });

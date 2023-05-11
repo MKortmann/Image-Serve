@@ -1,10 +1,10 @@
 import express from 'express';
+import { getThumbnail } from './api/getThumbnail';
 import { getImage } from './api/getImage';
-import { getUnmodifyImage } from './api/getUnmodifyImage';
 
 const routes = express.Router();
 
-routes.get('/images', getImage);
-routes.get('/:filename', getUnmodifyImage);
+routes.get('/images', getThumbnail);
+routes.get('/:filename', getImage);
 
 export default routes;

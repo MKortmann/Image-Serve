@@ -1,12 +1,38 @@
-// // import { Request, Response } from 'express';
-// import add5 from '../index';
+import request from 'supertest';
+import express from 'express';
+import cors from 'cors';
+import dotenv from 'dotenv';
+import path from 'path';
+import routes from '../routes/index';
+import { Server } from 'http';
 
-// describe('Image EndPoint test', () => {
-//   it('should return a 200 status code', () => {
+const app = express();
 
-//     expect(200).toBe(200);
-//   });
-//   it('should addd 5', () => {
-//     expect(add5(5)).toEqual(10);
-//   });
-// });
+describe('Express app', () => {
+  let server: Server;
+  const PORT = 5000;
+
+  beforeAll(() => {
+    app.use(cors());
+    app.use('/', routes);
+    app.use('/', express.static(path.join(__dirname, '../../public')));
+    dotenv.config();
+    server = app.listen(PORT, (): void => {
+      console.log(`Test server on port ${PORT}`);
+    });
+  });
+
+  afterAll((done) => {
+    server.close(done);
+  });
+
+  it('should return a text/html type', async () => {
+    const res = await request(app).get('/');
+    expect(res.type).toBe('text/html');
+  });
+
+  it('should serve static files from public directory', async () => {
+    const res = await request(app).get('/');
+    expect(res.text).toContain('Simple Placeholder API');
+  });
+});
