@@ -1,23 +1,60 @@
 {
-	"name": "p-01-imageprocessingapi",
-	"version": "1.0.0",
-	"description": "",
-	"main": "index.js",
-	"scripts": {
-		"start": "",
-		"build": "npx tsc",
-		"test": "echo \"Error: no test specified\" && exit 1"
-	},
-	"keywords": [],
-	"author": "",
-	"license": "ISC",
-	"devDependencies": {
-		"@types/express": "^4.17.17",
-		"@types/node": "^18.16.1",
-		"ts-node": "^10.9.1",
-		"typescript": "^5.0.4"
-	},
-	"dependencies": {
-		"express": "^4.18.2"
-	}
+  "name": "p-01-imageprocessingapi",
+  "version": "1.0.0",
+  "description": "API Image Processing",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon src/server.ts",
+    "clean": "rm -rf dist",
+    "build": "npx tsc",
+    "prettier": "prettier --write '**/*.ts'",
+    "lint": "eslint . --ext .ts",
+    "prod": "concurrently 'npm run start:prod' 'npm run watch:ts'",
+    "start:prod": "nodemon --watch dist dist/server.js",
+    "watch:ts": "tsc --watch",
+    "test": "npm run build && jasmine --config=./jasmine.json",
+    "test:watch": "jasmine --config=./jasmine.json --watch"
+  },
+  "keywords": [
+    "Udacity",
+    "API",
+    "Image"
+  ],
+  "author": "Marcelo Kortmann",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MKortmann/Image-Serve"
+  },
+  "engines": {
+    "node": ">=14.17.0 <= 16.13.1"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.13",
+    "@types/express": "^4.17.17",
+    "@types/jasmine": "^4.3.1",
+    "@types/node": "^18.16.1",
+    "@types/supertest": "^2.0.12",
+    "@typescript-eslint/eslint-plugin": "^5.59.1",
+    "@typescript-eslint/parser": "^5.59.1",
+    "concurrently": "^8.0.1",
+    "eslint": "^8.39.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-import": "^2.27.5",
+    "esm": "^3.2.25",
+    "jasmine": "^4.6.0",
+    "jasmine-spec-reporter": "^7.0.0",
+    "nodemon": "^2.0.22",
+    "prettier": "^2.8.8",
+    "supertest": "^6.3.3",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.0.4"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "sharp": "^0.32.1"
+  }
 }
