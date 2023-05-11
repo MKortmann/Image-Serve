@@ -12,7 +12,6 @@ describe('convert image into thumb image', () => {
   beforeEach(() => {
     const filename = 'fjord';
     imagePath = path.join(__dirname, '../../assets/images/', `${filename}.jpg`);
-    console.log(imagePath);
     width = 200;
     height = 200;
     thumbPath = path.join(
