@@ -1,8 +1,7 @@
 import express from 'express';
 import request from 'supertest';
-import path from 'path';
-import { getThumbnail } from '../routes/api/getThumbnail';
 import { Server } from 'http';
+import getThumbnail from '../routes/api/getThumbnail';
 
 const app = express();
 

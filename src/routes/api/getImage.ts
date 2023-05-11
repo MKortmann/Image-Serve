@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
 import path from 'path';
 
-export async function getImage(req: Request, res: Response): Promise<void> {
+async function getImage(req: Request, res: Response): Promise<void> {
   const { filename } = req.params;
-  const imagePath = path.join(__dirname, '../../../assets/images/', filename + '.jpg');
+  const imagePath = path.join(__dirname, '../../../assets/images/', `${filename}.jpg`);
 
   console.log(imagePath);
 
@@ -11,3 +11,5 @@ export async function getImage(req: Request, res: Response): Promise<void> {
   res.status(200);
   res.sendFile(imagePath);
 }
+
+export default getImage;

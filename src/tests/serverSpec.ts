@@ -3,8 +3,8 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import path from 'path';
-import routes from '../routes/index';
 import { Server } from 'http';
+import routes from '../routes/index';
 
 const app = express();
 

@@ -2,15 +2,15 @@
   "name": "p-01-imageprocessingapi",
   "version": "1.0.0",
   "description": "API Image Processing",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "start": "nodemon src/index.ts",
+    "start": "nodemon src/server.ts",
     "clean": "rm -rf dist",
     "build": "npx tsc",
     "prettier": "prettier --write '**/*.ts'",
     "lint": "eslint . --ext .ts",
     "prod": "concurrently 'npm run start:prod' 'npm run watch:ts'",
-    "start:prod": "nodemon --watch dist dist/index.js",
+    "start:prod": "nodemon --watch dist dist/server.js",
     "watch:ts": "tsc --watch",
     "test": "npm run build && jasmine --config=./jasmine.json",
     "test:watch": "jasmine --config=./jasmine.json --watch"

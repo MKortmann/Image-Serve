@@ -1,8 +1,8 @@
 import express from 'express';
 import request from 'supertest';
 import path from 'path';
-import { getImage } from '../routes/api/getImage';
 import { Server } from 'http';
+import getImage from '../routes/api/getImage';
 
 const app = express();
 

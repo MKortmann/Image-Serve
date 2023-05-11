@@ -1,21 +1,24 @@
 import sharp from 'sharp';
 import path from 'path';
 import fs from 'fs';
-import { generateThumbnail } from '../routes/utilities/sharp';
+import generateThumbnail from '../routes/utilities/sharp';
 
 describe('convert image into thumb image', () => {
-  let imagePath: string, thumbPath: string, width: number, height: number;
+  let imagePath: string;
+  let thumbPath: string;
+  let width: number;
+  let height: number;
 
   beforeEach(() => {
     const filename = 'fjord';
-    imagePath = path.join(__dirname, '../../assets/images/', filename + '.jpg');
+    imagePath = path.join(__dirname, '../../assets/images/', `${filename}.jpg`);
     console.log(imagePath);
     width = 200;
     height = 200;
     thumbPath = path.join(
       __dirname,
       '../../assets/thumbs/',
-      filename + '-w' + width + '-h' + height + '.jpg'
+      `${filename}-w${width}-h${height}.jpg`
     );
   });
 
